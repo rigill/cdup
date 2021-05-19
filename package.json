@@ -1,0 +1,11 @@
+{
+  "name": "cdup",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "lint": "shellcheck ./cdup.sh"
+  },
+  "bin": {
+    "cdup": "./cdup.sh"
+  }
+}
