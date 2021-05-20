@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version="0.0.3"
+version="0.0.4"
 
 dir=.
 pwd=$(pwd)
@@ -28,6 +28,14 @@ update() {
     && echo "... updated to $(cdup --version)"
 }
 
+uninstall() {
+  cd /tmp \
+    && echo "... uninstalling" \
+    && cd cdup \
+    && make uninstall \
+    && echo "... cdup has been removed"
+}
+
 # parse options
 while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do
   case $1 in
@@ -36,6 +44,9 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do
       ;;
     -U | --update )
       update
+      ;;
+    --uninstall )
+      uninstall
       ;;
     -h | --help )
       usage
