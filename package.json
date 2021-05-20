@@ -1,9 +1,10 @@
 {
   "name": "cdup",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
-    "lint": "shellcheck ./cdup.sh"
+    "lint": "shellcheck ./cdup.sh",
+    "install": "make install"
   },
   "bin": {
     "cdup": "./cdup.sh"
