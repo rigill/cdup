@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version="0.0.2"
+version="0.0.3"
 
 dir=.
 pwd=$(pwd)
@@ -20,14 +20,12 @@ EOF
 # update cdup via git clone
 update() {
   cd /tmp \
-    && rm -fr /tmp/cdup \
     && echo "... updating" \
     && git clone --depth 1 git://github.com/rigill/cdup.git \
     && cd cdup \
-    && echo "$(pwd)" \
     && make install \
+    && cd "${pwd}" \
     && echo "... updated to $(cdup --version)"
-  exit
 }
 
 # parse options
@@ -35,14 +33,12 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do
   case $1 in
     -V | --version )
       echo $version
-      exit
       ;;
     -U | --update )
       update
       ;;
     -h | --help )
       usage
-      exit
       ;;
   esac
   shift
@@ -60,6 +56,5 @@ fi
 
 # check if directory exists
 if [ -d "${dir}" ]; then
-  # echo "$dir"
-  cd "$dir" || exit
+  cd "$dir" || return
 fi
